@@ -21,7 +21,10 @@ router = Router()
 @router.message(CommandStart())
 async def cmd_start(message: Message | CallbackQuery):
     await message.answer(
-        "Добро пожаловать в бота!", reply_markup=questionnaire_keyboard()
+        "<b>Добро пожаловать в бота!</b>",
+        reply_markup=questionnaire_keyboard(),
+        parse_mode='HTML',
+
     )
 
 
@@ -29,14 +32,14 @@ async def cmd_start(message: Message | CallbackQuery):
 @router.callback_query(F.data == 'incorrect')
 async def callbacks_questionnaire(callback: CallbackQuery, state: FSMContext):
     await state.clear()
-    await callback.message.answer('Начнем анкетирование. Для начала укажи свое имя: ')
+    await callback.message.answer('<b>Начнем анкетирование.</b> Для начала укажи свое имя: ', parse_mode='HTML')
     await state.set_state(Form.name)
 
 
 @router.message(F.text, Form.name)
 async def lastname_questionnaire(message: Message, state: FSMContext):
     await state.update_data(name=message.text)
-    await message.answer('Супер!А теперь укажи свою фамилию: ')
+    await message.answer('<b>Супер!</b> А теперь укажи свою фамилию: ', parse_mode='HTML')
     await state.set_state(Form.lastname)
 
 

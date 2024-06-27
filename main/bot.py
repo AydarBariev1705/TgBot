@@ -6,10 +6,8 @@ from aiogram import Bot, Dispatcher
 
 from config import REDIS_URL, TOKEN
 
-# from common.config import TOKEN, REDIS_URL
-
 logging.basicConfig(format=u'%(filename)+13s [ LINE:%(lineno)-4s] %(levelname)-8s [%(asctime)s] %(message)s',
-                    level=logging.INFO, )
+                    level=logging.INFO,)
 
 
 async def main():

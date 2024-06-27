@@ -19,17 +19,3 @@ async def create_or_update_user(tg_id: int, name: str, lastname: str) -> None:
             user.lastname = lastname
             user.name = name
             await session.commit()
-
-
-async def get_users():
-    """Функция для извлечения данных о пользователях"""
-    async with async_session() as session:
-        users = await session.scalars(select(User))
-        return users
-
-
-async def get_user(tg_id: int):
-    """Функция для извлечения данных о пользователе"""
-    async with async_session() as session:
-        user = await session.scalar(select(User).where(User.id == tg_id))
-        return user

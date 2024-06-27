@@ -1,5 +1,5 @@
 from database import async_session
-from sqlalchemy import select, delete
+from sqlalchemy import select
 from models import User
 
 

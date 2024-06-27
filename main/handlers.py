@@ -5,8 +5,8 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import CommandStart
 
-from main.keyboards import questionnaire_keyboard, check_keyboard
-from main.utils import create_or_update_user
+from keyboards import questionnaire_keyboard, check_keyboard
+from utils import create_or_update_user
 
 
 class Form(StatesGroup):
@@ -47,7 +47,7 @@ async def check_questionnaire(message: Message, state: FSMContext):
     text = f'Пожалуйста, проверьте все ли верно: \n\n' \
            f'<b>Имя</b>: {data.get("name")}\n' \
            f'<b>Фамилия</b>: {data.get("lastname")}\n'
-    await message.answer(text, reply_markup=check_keyboard())
+    await message.answer(text, reply_markup=check_keyboard(), parse_mode='HTML')
     await state.set_state(Form.check_state)
 
 
